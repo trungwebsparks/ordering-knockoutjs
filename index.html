@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div id="order-form">
+                    <h5>Xin chào anh/chị <span data-bind="text: customerName"></span></h5>
+                    <div>
+                        <div class="form-group">
+                            <label for="txtCustomerName">Tên khách hàng</label>
+                            <input type="text" class="form-control" id="txtCustomerName" data-bind="value: customerName">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtCustomerPhone">Số điện thoại</label>
+                            <input type="text" class="form-control" id="txtCustomerPhone" data-bind="value: customerPhone">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtCustomerAddress">Địa chỉ</label>
+                            <textarea rows="2" class="form-control" id="txtCustomerAddress" data-bind="value: customerAddress"></textarea>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Đơn vị</th>
+                                <th>Đơn giá</th>                            
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: orderItems" id='tableBody'>
+                            <tr class="order-item-row">
+                                <!-- <td></td><td></td><td></td><td></td><td></td><td></td> -->
+                                <td data-bind="text: $index"></td>
+                                <!-- <td></td> -->
+                                <td><input class="form-control" data-bind="value: productName"></td>
+                                <!-- <td></td> -->
+                                <td><select class="form-control" data-bind="options: $parent.quantities, value: qty"></td>
+                                <!-- <td></td> -->
+                                    <td><select class="form-control" data-bind="options: $parent.units, optionsCaption: '--Đơn vị--', optionsText: 'name', optionsValue: 'id', value: unit"></select></td>
+                                <td data-bind="text: price"></td>
+                                <td data-bind="text: total"></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="text-right" colspan="7"><strong>TỔNG TIỀN</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <button data-bind="click: saveOrder" class="btn btn-primary">Đặt hàng</button>
+                    <button data-bind="click: clearOrder" class="btn btn-danger">Xóa đơn hàng</button>
+                    <button data-bind="click: addOrderItem" class="btn btn-info">Thêm dòng</button>
+                    <button data-bind="click: updateOrderItems" class="btn btn-warning">Update order items</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
