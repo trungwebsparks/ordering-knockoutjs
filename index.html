@@ -42,7 +42,7 @@
                                 <!-- <td></td><td></td><td></td><td></td><td></td><td></td> -->
                                 <td data-bind="text: $index"></td>
                                 <!-- <td></td> -->
-                                <td><input class="form-control" data-bind="value: productName"></td>
+                                <td><input class="form-control" type="text" data-bind="typeahead: productName, value: productName, productNameVal: productName, productIDVal: productId, valueUpdate: 'afterkeydown'" /></td>
                                 <!-- <td></td> -->
                                 <td><select class="form-control" data-bind="options: $parent.quantities, value: qty"></td>
                                 <!-- <td></td> -->
@@ -70,6 +70,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
     <script src="index.js"></script>
 </body>
 

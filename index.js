@@ -33,19 +33,28 @@ $(function() {
         self.selectedUnits= ko.observableArray([]),
         self.products= ko.observableArray([
             {
+                id:1,
                 name:"Khóa",
                 price: "100000",
                 unit:"Cái"
             },
             {
+                id:2,
                 name:"Búa",
                 price:"50000",
                 unit:"Cái",
             },
             {
+                id:3,
                 name:"Tuvit",
                 price:"15000",
                 unit:"Cái"
+            },
+            {
+                id:4,
+                name:"Silicon",
+                price: "40000",
+                unit:"Cái",
             }
         ]),
         self.saveOrder= function(){
@@ -82,6 +91,29 @@ $(function() {
             self.orderItems(items);
         }
     }
+    ko.bindingHandler.typeahead = {
+        init: function(element, valueAccessor, allBindingsAccessor){
+            let $e = $(element),
+                productNameVal = allBindingsAccessor().productNameVal,
+                productIDVal = allBindingsAccessor().productIDVal;
+
+            let updateValues = function(datum){
+                try{
+                    productNameVal(datum.name);
+                    productIDVal(datum.id);
+                }catch(err){
+                    console.log('ko.bindingHandler.typeahead error', err);
+                }
+            };
+
+            $e.typeahead({
+                name:'products',
+                local:self.products
+            }).on('typeahead:selected', function(el,datum){
+                updateValues(datum);
+            }).on('typeahead')
+        }
+    };
     ko.applyBindings(new viewModel());
 });
 
